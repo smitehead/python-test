@@ -109,3 +109,73 @@ print(set_result)
 #symmertic_differnce()함수를 이용
 set_result=set_data.symmetric_difference(["가","나",1,2,3])
 print(set_result)
+
+
+#d인플레이스 연산자
+# != 합집합
+set_data={1,2,3,4,5}
+set_data2={1,2,3,4,5,6,7,8}
+result = set_data|set_data2
+set_data |= set_data2
+print(set_data)
+#교집합
+set_data &= {1,2,3,4,5,6}
+print(set_data)
+#차집합 :-= ,^=대칭차집합
+
+#set데이터간 포함관계를 확인하기->대소비교를 통해 확인
+set_data={1,2,3,4,5}
+set_data2={2,3,4}
+set_data3={2,3,6}
+
+print(f"set_data >= set_data2 : {set_data>=set_data2}")
+print(f"set_data >= set_data2 : {set_data>=set_data3}")
+
+#서로소를 확인하는 메소드->두 집합간 같은 값이 없으면 True, 아니면 false
+#isdisjoint()함수
+print(f"중복값 20,30 : {set_data.isdisjoint({20,30})}")
+
+#수정이 불가능한 set만들기
+#Frozenset()함수를 이용
+fset_data = frozenset({10,20,30})
+fset_data2 = frozenset({10,20,30,40,50})
+print(fset_data)
+#set_data.add(200) 이런건 안됨
+#튜플 대신 사용하는 이유는 set으로 만들면 집합연산이 가능하기 때문
+print(fset_data | fset_data2)
+
+#리스트에서 중복값을 제거
+names=["바나나","나나바","바바바","나나나","바나나","바나바","나바나","바나나"]
+#중복값 제거 후 리스트로 출력하기 반복문으로 출력
+result = list(set(names))
+for name in result :
+    print(name)
+
+#데이터를 in 연산자를이용해서 조회할때 list보다 set이 속도가 빠르다
+data=list(range(10000000))
+setstart =set(data)
+import time
+start =time.time()
+# if 300 in data :
+#     print("찾았다!")
+#     print(f"리스트로 찾기 : {time.time()-start}")
+
+# start=time.time()
+
+# if 300 in setstart :
+#     print("찾았다!")
+#     print(f"set으로 찾기 : {time.time()-start}")
+
+#장바구니 목록에서 구매하지 않은 물품찾기
+cart_pro ={"컴퓨터","키보드","마우스"}
+buy_pro={"키보드","마우스"}
+
+print(cart_pro-buy_pro)
+
+#컴프리핸션이용하기
+str="이것을 반복해서 만들어보자고요! 집중해서"
+set_str={s for s in str}
+print(set_str)
+#1~100사이의 값 중 3의 배수, 8의 배수를 set으로 만들기
+set_num = {n for n in range(1,100) if n%3==0 or n%8==0}
+print(set_num)
